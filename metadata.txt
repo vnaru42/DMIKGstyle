@@ -1,0 +1,10 @@
+[general]
+name=DMIKG Central Style
+description=Anvender en fælles DMIKG style skabelon.
+about=Giver mulighed for at vælge mellem DMIKG's punkt- eller linje styles.
+version=1.0.0
+qgisMinimumVersion=4.0
+qgisMaximumVersion=4.99
+author=KDS Praktikant - Angelo
+email=angelo.anaru@gmail.com
+experimental=True
