@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from qgis.PyQt.QtCore import Qt, QSettings
+from qgis.PyQt.QtCore import Qt
 from qgis.PyQt.QtGui import QAction, QIcon
-from qgis.PyQt.QtWidgets import QFileDialog, QMenu, QMessageBox, QToolButton
+from qgis.PyQt.QtWidgets import QMenu, QMessageBox, QToolButton
 
 
 MENU_NAME = "&DMIKG STYLE"
@@ -10,11 +10,11 @@ MENU_NAME = "&DMIKG STYLE"
 STYLES = {
     "linjer": {
         "navn": "Linjer",
-        "settings_key": "DMIKG_STYLE/linjer_qml"
+        "path": r"C:\Users\x189777\Documents\QML\DMIKG_LINJE_STYLE.qml"
     },
     "punkter": {
         "navn": "Punkter",
-        "settings_key": "DMIKG_STYLE/punkter_qml"
+        "path": r"C:\Users\x189777\Documents\QML\DMIKG_PUNKT_STYLE.qml"
     }
 }
 
@@ -65,16 +65,6 @@ class DmikgStyle:
             self.button
         )
 
-        self.add_plugin_action(
-            "Vælg QML til linjer...",
-            lambda: self.choose_style("linjer")
-        )
-
-        self.add_plugin_action(
-            "Vælg QML til punkter...",
-            lambda: self.choose_style("punkter")
-        )
-
     def add_plugin_action(self, text, function):
         action = QAction(text, self.iface.mainWindow())
         action.triggered.connect(function)
@@ -103,51 +93,12 @@ class DmikgStyle:
             action.deleteLater()
 
     def saved_style_path(self, style_type):
-        settings_key = STYLES[style_type]["settings_key"]
-
-        value = QSettings().value(
-            settings_key,
-            ""
-        )
-
-        return str(value).strip()
-
-    def choose_style(self, style_type):
-        style = STYLES[style_type]
-        current_path = self.saved_style_path(style_type)
-
-        if current_path:
-            start_folder = str(Path(current_path).parent)
-        else:
-            start_folder = ""
-
-        selected_path, _ = QFileDialog.getOpenFileName(
-            self.iface.mainWindow(),
-            f"Vælg QML-style til {style['navn'].lower()}",
-            start_folder,
-            "QGIS Layer Style (*.qml)"
-        )
-
-        if not selected_path:
-            return False
-
-        QSettings().setValue(
-            style["settings_key"],
-            selected_path
-        )
-
-        QMessageBox.information(
-            self.iface.mainWindow(),
-            "DMIKG STYLE",
-            f"Stylefilen til {style['navn'].lower()} er gemt."
-        )
-
-        return True
+        return STYLES[style_type]["path"]
 
     def apply_style(self, style_type):
         style = STYLES[style_type]
         layer = self.iface.activeLayer()
-
+    
         if layer is None:
             QMessageBox.warning(
                 self.iface.mainWindow(),
@@ -155,41 +106,33 @@ class DmikgStyle:
                 "Markér først et lag i Lag-panelet."
             )
             return
-
+    
         style_path = self.saved_style_path(style_type)
-
-        if not style_path:
-            selected = self.choose_style(style_type)
-
-            if not selected:
-                return
-
-            style_path = self.saved_style_path(style_type)
-
+    
         if not Path(style_path).is_file():
-            QMessageBox.warning(
+            QMessageBox.critical(
                 self.iface.mainWindow(),
                 "DMIKG STYLE",
-                f"Stylefilen blev ikke fundet:\n{style_path}"
+                f"QML-filen kunne ikke findes:\n\n{style_path}\n\n"
+                "Kontrollér at fællesdrevet er tilgængeligt."
             )
             return
-
-        error_message, success = layer.loadNamedStyle(
-            style_path
-        )
-
+    
+        error_message, success = layer.loadNamedStyle(style_path)
+    
         if not success:
             QMessageBox.critical(
                 self.iface.mainWindow(),
                 "DMIKG STYLE",
-                error_message
+                f"QML-filen blev fundet, men kunne ikke indlæses:\n\n"
+                f"{error_message}"
             )
             return
-
+    
         layer.triggerRepaint()
-
+    
         self.iface.messageBar().pushSuccess(
             "DMIKG STYLE",
             f"{style['navn']} er anvendt på {layer.name()}."
         )
-
+    
