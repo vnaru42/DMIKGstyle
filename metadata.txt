@@ -1,10 +1,14 @@
 [general]
 name=DMIKG Central Style
 description=Anvender en fælles DMIKG style skabelon.
-about=Giver mulighed for at vælge mellem DMIKG's punkt- eller linje styles.
-version=1.0.0
+about=Giver mulighed for at vælge mellem DMIKG's punkt- eller linje styles, for let tilgængelig ensformethed til præsentation eller internt arbejde
+version=1.1.0
 qgisMinimumVersion=4.0
 qgisMaximumVersion=4.99
-author=KDS Praktikant - Angelo
+author=KDS Praktikant - Angelo - angelo.anaru@gmail.com
 email=angelo.anaru@gmail.com
-experimental=True
+experimental=False
+icon=icon.ico
+tags=DMIKG,QGIS,style,QML,Klimadatastyrelsen
+tracker=https://github.com/vnaru42/DMIKGstyle.git
+repository=https://github.com/vnaru42/DMIKGstyle.git
