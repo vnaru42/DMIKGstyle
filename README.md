@@ -6,5 +6,6 @@
 6:  Vælg installer fra ZIP  
 7:  Skriv eller find adressen på filen  
   
-8:  DMIKG vil nu finde template filen direkte i fællesdrevet.  
+8:  DMIKG vil nu finde template som er skrevet ind i plugin.py på 13 og 17 linje.  
 9:  Der kan vælges mellem linjer og punkter
+10: Næste update for server adressen for templates
