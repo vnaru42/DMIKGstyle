@@ -6,6 +6,5 @@
 6:  Vælg installer fra ZIP  
 7:  Skriv eller find adressen på filen  
   
-8:  Efter installering, vises DMIKG ikon i toolbar.   
-9:  Ved første brug, skal QML filerne vælges fra fællesdrevet  
-10: Marker dit linje lag og vælg derefter linjer i DMIKG styles  
+8:  DMIKG vil nu finde template filen direkte i fællesdrevet.  
+9:  Der kan vælges mellem linjer og punkter
