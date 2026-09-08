@@ -1,11 +1,11 @@
-Download ZIP.  
-Placér evt i QGIS plugin folder:  
-C:\Users\______\AppData\Roaming\QGIS\QGIS4\profiles\default\python\plugins\  
-eller andet sted hvor den ikke bliver slettet  
-i QGIS, vælg Plugins > Administrer og Installer plugins.  
-Vælg installer fra ZIP  
-Skriv eller find adressen på filen  
+1:  Download ZIP.  
+2:  Placér evt i QGIS plugin folder:  
+3:  C:\Users\______\AppData\Roaming\QGIS\QGIS4\profiles\default\python\plugins\  
+4:  eller andet sted hvor den ikke bliver slettet  
+5:  i QGIS, vælg Plugins > Administrer og Installer plugins.  
+6:  Vælg installer fra ZIP  
+7:  Skriv eller find adressen på filen  
   
-Efter installering, vises DMIKG ikon i toolbar.   
-Ved første brug, skal QML filerne vælges fra fællesdrevet  
-Marker dit linje lag og vælg derefter linjer i DMIKG styles  
+8:  Efter installering, vises DMIKG ikon i toolbar.   
+9:  Ved første brug, skal QML filerne vælges fra fællesdrevet  
+10: Marker dit linje lag og vælg derefter linjer i DMIKG styles  
